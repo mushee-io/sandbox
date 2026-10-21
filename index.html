@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#13252c"><meta name="description" content="Find your flow. A cinematic alpine freeride game with powder turns, forest lines and a turquoise lake finish."><title>Alpine Flow — Find your line</title></head>
+<body>
+<canvas id="world" aria-label="Three-dimensional alpine skiing course"></canvas>
+<div class="vignette"></div>
+<header><a class="brand" href="./" aria-label="Alpine Flow home"><span class="mountain-mark">△</span> ALPINE<span class="light">FLOW</span><span class="edition">FREERIDE / 01</span></a><div class="header-right"><span class="live-dot"></span><span>THE MOUNTAIN IS YOURS</span><button id="sound" aria-label="Enable sound" aria-pressed="false">SOUND OFF</button><button id="pause" hidden>PAUSE</button></div></header>
+<main id="intro">
+<div class="eyebrow"><span></span> ABOVE THE EVERYDAY</div>
+<h1>Find your<br><em>own line.</em></h1>
+<p class="intro-copy">No tracks. No limits. Just you, the mountain,<br>and the feeling of getting it perfectly right.</p>
+<div class="actions"><button id="start" class="primary">DROP IN <span>↗</span></button><button id="demo" class="secondary"><span>▷</span> WATCH THE RUN <small>18 SEC</small></button></div>
+<div class="intro-meta"><div><strong>2,844<span>m</span></strong><small>STARTING ALTITUDE</small></div><div><strong>06</strong><small>CONNECTED SECTIONS</small></div><div><strong>∞</strong><small>POSSIBLE LINES</small></div></div>
+</main>
+<aside id="location"><span class="eyebrow">THE GOLDEN HOUR COLLECTION</span><h2>Beyond the ridge.</h2><p>46°35′ N &nbsp; 08°01′ E · ALPINE CONCEPT</p><div class="weather"><span>☀ &nbsp; −8°C</span><span>FRESH POWDER</span><span>WIND 12 KM/H</span></div></aside>
+<div id="hud" hidden>
+<div class="run-timer"><small>RUN TIME</small><strong id="timer">00:00.00</strong><span id="mode-label">FREE RIDE</span></div>
+<div class="altimeter"><span><b id="altitude">2,844</b> M</span><i></i><span>↓ <b id="vertical">0</b> M VERTICAL</span></div>
+<div class="score-panel"><small>LINE SCORE</small><strong id="score">0</strong><span id="multiplier">×1 FLOW</span><div id="notification" aria-live="polite"></div></div>
+<div class="map-panel"><small>YOUR LINE <span>↓</span></small><svg viewBox="0 0 130 160" aria-label="Course progress minimap"><g fill="none" stroke="#ffffff25"><path d="M0 20Q70 60 130 5M0 40Q70 80 130 25M0 60Q70 100 130 45M0 80Q70 120 130 65M0 100Q70 140 130 85M0 120Q70 160 130 105M0 140Q70 180 130 125"/></g><path d="M65 12C115 35 20 48 65 72S110 102 65 145" fill="none" stroke="#d7f89b" stroke-width="2" stroke-dasharray="3 4"/><circle id="map-dot" cx="65" cy="12" r="5" fill="#e4ffb4"/></svg><span id="section-name">01 / THE RIDGE</span></div>
+<div class="speed-panel"><svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="71" fill="none" stroke="#ffffff25" stroke-width="2"/><circle id="speed-ring" cx="80" cy="80" r="71" fill="none" stroke="#d7f89b" stroke-width="4" stroke-dasharray="446" stroke-dashoffset="446" transform="rotate(-90 80 80)"/></svg><strong id="speed">0</strong><small>KM/H</small></div>
+<div class="run-progress"><div id="progress"></div></div>
+</div>
+<footer><span id="footer-label">A LITTLE CLOSER TO WILD.</span><div class="controls"><span><kbd>A</kbd><kbd>D</kbd> STEER</span><span><kbd>W</kbd> TUCK</span><span><kbd>S</kbd> BRAKE</span><span><kbd>SPACE</kbd> JUMP</span><span><kbd>ESC</kbd> PAUSE</span></div><span class="footer-number">01 — 06</span></footer>
+<div id="touch-controls" hidden><button data-key="a" aria-label="Steer left">←</button><button data-key="d" aria-label="Steer right">→</button><button data-key="s" aria-label="Brake">BRAKE</button><button data-key=" " aria-label="Jump">JUMP</button></div>
+<dialog id="paused"><span class="eyebrow">TAKE A BREATH</span><h2>Mountain time.</h2><p>Your line will be right here.</p><button id="resume" class="primary">KEEP RIDING ↗</button><button id="restart" class="secondary">START AGAIN</button></dialog>
+<dialog id="results"><span class="eyebrow">YOU FOUND YOUR FLOW</span><div id="rank">S</div><h2>Run complete.</h2><p>The mountain leaves a mark.</p><div class="results-grid"><div><small>LINE SCORE</small><strong id="final-score"></strong></div><div><small>MAX SPEED</small><strong id="final-speed"></strong></div><div><small>AIRTIME</small><strong id="final-air"></strong></div><div><small>RUN TIME</small><strong id="final-time"></strong></div></div><button id="again" class="primary">ANOTHER LINE ↗</button><button id="home" class="secondary">BACK TO RIDGE</button></dialog>
+<div id="error" hidden role="alert"></div>
+<script type="module" src="/src/main.js"></script>
+</body></html>

@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { freshState,step,collide,LENGTH,formatTime } from '../src/physics.js';
+const input={steer:0,tuck:false,brake:false,jump:false};
+test('a complete run terminates at the lake and cannot continue scoring',()=>{const s=freshState();for(let i=0;i<6000&&!s.finished;i++)step(s,input,1/60);assert.equal(s.distance,LENGTH);assert.ok(s.finished);const score=s.score;step(s,input,1);assert.equal(s.score,score);});
+test('jump follows gravity and lands once with a reward',()=>{const s=freshState();let landings=0;step(s,{...input,jump:true},1/60);assert.ok(s.lift>0);for(let i=0;i<150;i++)landings+=step(s,input,1/60).filter(e=>e==='landing').length;assert.equal(s.lift,0);assert.equal(landings,1);assert.ok(s.air>1);});
+test('braking slows skier and sustained steering stays within course',()=>{const s=freshState();s.speed=25;for(let i=0;i<300;i++)step(s,{...input,brake:true,steer:1},1/60);assert.ok(s.speed<8);assert.ok(s.x<=23);});
+test('collision penalties have cooldown and airborne clearance',()=>{const s=freshState();s.speed=20;s.score=500;assert.ok(collide(s));assert.equal(s.score,150);assert.equal(collide(s),false);s.crashed=0;s.lift=2;assert.equal(collide(s),false);});
+test('timer carries whole minutes without rounding to 60 seconds',()=>{assert.equal(formatTime(59.999),'00:59.99');assert.equal(formatTime(60),'01:00.00');});
+test('cinematic tour finishes close to its advertised eighteen seconds',()=>{const s=freshState();for(let i=0;i<1500&&!s.finished;i++)step(s,input,1/60,true);assert.ok(s.finished);assert.ok(s.time>=17&&s.time<=19);});
